@@ -1,0 +1,14 @@
+.taskContainer{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.taskContainer div{
+    border: 2px solid pink;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    width: 200px;
+    margin-bottom: 10px;
+}
