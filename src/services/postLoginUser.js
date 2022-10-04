@@ -15,12 +15,14 @@ const postLoginUser = async (form) => {
         headers: { "Content-Type": "application/json" },
       }
     );
-
     const token = res.data.token;
-
     localStorage.setItem("token", token);
+
+    return true;
+    
   } catch (error) {
     console.log(error);
+    return false;
   }
 };
 

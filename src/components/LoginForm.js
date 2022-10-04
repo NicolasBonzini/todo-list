@@ -4,16 +4,16 @@ import postLoginUser from "../services/postLoginUser";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
 export const LoginForm = () => {
   //Redireccion
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
   //Estado del formulario
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-  const [success, setSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   //Captura los datos del formulairo
   const handleChange = (event) => {
@@ -24,57 +24,58 @@ export const LoginForm = () => {
   };
 
   //Envia los datos del formulario
-  const handleSubmit = async (event) => {
+  const handleSubmit =  async (event) => {
+    setIsLoading(true);
     event.preventDefault();
 
-    if(postLoginUser(form)){
+    const congrats = await postLoginUser(form);
 
-      
+    if(congrats) {
       setForm({
         email: "",
         password: "",
       });
-      
-    }else{
 
+      setIsLoading(false);
+      navigate('/home')
+    } else {
+      alert("No");
     }
-
-
-
-    
   };
 
   return (
     <>
-    {success ? (
-      <h1>Ingresastes</h1>
-    ): (<div>
-      <h1>LOGIN</h1>
-      <form onSubmit={handleSubmit}>
-        <section>
-          <label htmlFor="email">EMAIL</label>
-          <input
-            id="email"
-            type="email"
-            onChange={handleChange}
-            value={form.email}
-            required
-          />
-        </section>
+      {isLoading ? (
+        <h1>Cargando...</h1>
+      ) : (
+        <div>
+          <h1>LOGIN</h1>
+          <form onSubmit={handleSubmit}>
+            <section>
+              <label htmlFor="email">EMAIL</label>
+              <input
+                id="email"
+                type="email"
+                onChange={handleChange}
+                value={form.email}
+                required
+              />
+            </section>
 
-        <section>
-          <label htmlFor="password">PASSWORD</label>
-          <input
-            id="password"
-            type="password"
-            onChange={handleChange}
-            value={form.password}
-            required
-          />
-        </section>
-        <button type="submit">LOGUEARSE</button>
-      </form>
-    </div>)}
+            <section>
+              <label htmlFor="password">PASSWORD</label>
+              <input
+                id="password"
+                type="password"
+                onChange={handleChange}
+                value={form.password}
+                required
+              />
+            </section>
+            <button type="submit">LOGUEARSE</button>
+          </form>
+        </div>
+      )}
     </>
   );
 };
