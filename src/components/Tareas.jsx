@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
+import Task from './task';
 import './task.css'
 
 const cookies = new Cookies();
@@ -50,11 +51,7 @@ export default function Tareas() {
         <div className='taskContainer'>
             {
                 tasks?.map(x => 
-                <div  key={x.id}>
-                    <p>{x.state}</p> 
-                    <h4>{x.name}</h4>
-                    <p>{x.id}</p> 
-                </div>
+                    <Task {...x}  />
                 )
             }
         </div>

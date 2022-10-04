@@ -5,10 +5,11 @@
     flex-wrap: wrap;
 }
 
-.taskContainer div{
+.taskContainer ul{
     border: 2px solid pink;
     background-color: antiquewhite;
     border-radius: 5px;
     width: 200px;
     margin-bottom: 10px;
+    text-align: start;
 }
