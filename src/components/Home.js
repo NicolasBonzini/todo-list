@@ -1,4 +1,5 @@
 import React from 'react'
+import AddTasks from './AddTasks/AddTasks'
 
 function Home() {
 
@@ -6,6 +7,7 @@ function Home() {
   return (
     <div>
       <h1>HOME</h1>
+      <AddTasks/>
     </div>
   )
 }
