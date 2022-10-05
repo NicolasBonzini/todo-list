@@ -1,8 +1,12 @@
 import React from 'react'
+import TasksList from './TasksList'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <TasksList/>
+    </div>
+    
   )
 }
 

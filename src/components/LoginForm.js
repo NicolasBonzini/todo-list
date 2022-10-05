@@ -1,9 +1,5 @@
 import React, { useState, useContext } from "react";
 import postLoginUser from "../services/postLoginUser";
-//React Router
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
 
 export const LoginForm = () => {
   //Redireccion
@@ -28,20 +24,12 @@ export const LoginForm = () => {
     event.preventDefault();
 
     if(postLoginUser(form)){
-
-      
       setForm({
         email: "",
         password: "",
       });
       
-    }else{
-
     }
-
-
-
-    
   };
 
   return (
