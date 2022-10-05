@@ -5,6 +5,7 @@ import Home from './components/Home';
 import User from './components/User';
 //React Router
 import { Route, Routes } from 'react-router-dom';
+import AddTasks from './components/AddTasks/AddTasks';
 import TasksList from './components/TasksList';
 
 function App() {
