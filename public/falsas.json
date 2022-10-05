@@ -1,0 +1,37 @@
+[
+    {
+      "id": 1,
+      "name": "Algo",
+      "state": 0
+    },
+    {
+      "id": 2,
+      "name": "Algo mas importante",
+      "state": 1
+    },
+    {
+      "id": 3,
+      "name": "Volar",
+      "state": 0
+    },
+    {
+      "id": 4,
+      "name": "Patinar",
+      "state": 1
+    },
+    {
+      "id": 5,
+      "name": "Fiumba",
+      "state": 1
+    },
+    {
+      "id": 6,
+      "name": "Alfredo",
+      "state": 0
+    },
+    {
+      "id": 7,
+      "name": "Juanito",
+      "state": 1
+    }
+  ]
