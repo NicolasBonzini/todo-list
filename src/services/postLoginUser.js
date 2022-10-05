@@ -1,12 +1,12 @@
-import React from "react";
 import axios from "axios";
+import { postDataUserLocalStorage } from "./postUserLocalStorage";
 
-const urlLogin = "https://api-nodejs-todolist.herokuapp.com/user/login";
+const url = "https://api-nodejs-todolist.herokuapp.com/user/";
 
 const postLoginUser = async (form) => {
   try {
     const res = await axios.post(
-      urlLogin,
+      url + "/login",
       JSON.stringify({
         email: form.email,
         password: form.password,
@@ -16,11 +16,19 @@ const postLoginUser = async (form) => {
       }
     );
 
+    const { _id, name, email } = res.data.user;
     const token = res.data.token;
 
-    localStorage.setItem("token", token);
+    const avatar = await axios.get(url + `/${_id}/avatar`)
+      .then(res => res.data);
+
+      
+
+    postDataUserLocalStorage(_id, name, email, token, avatar);
+
+    return true;
   } catch (error) {
-    console.log(error);
+    return false;
   }
 };
 
