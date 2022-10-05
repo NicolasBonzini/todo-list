@@ -10,7 +10,6 @@ export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [ errors, setErrors ] = useState(false);
 
-
   const handleChange = (event) => {
     setForm({
       ...form,
@@ -23,7 +22,7 @@ export const LoginForm = () => {
     setIsLoading(true);
     setErrors(false)
     const response = await postLoginUser(form);
-
+      
     if (response) {
       setForm({ email: "", password: "" });
       setIsLoading(false);
