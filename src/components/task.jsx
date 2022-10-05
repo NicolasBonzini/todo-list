@@ -1,11 +1,11 @@
 import React from 'react'
+import './task.css'
 
-export default function task({id, name, state}) {
+export default function task({_id, description, completed}) {
   return (
-    <ul  key={id}>
-        <li><strong>Estado:</strong> {state}</li> 
-        <li><strong>Titulo:</strong> {name}</li>
-        <li><strong>Id:</strong> {id}</li> 
+    <ul className={'state' + completed}>
+        <li><strong>Estado:</strong> {completed ? 'Finalizado' : 'En proceso'}</li> 
+        <li><strong>Titulo:</strong> {description}</li>
     </ul>
   )
 }

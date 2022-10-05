@@ -7,9 +7,24 @@
 
 .taskContainer ul{
     border: 2px solid pink;
-    background-color: antiquewhite;
     border-radius: 5px;
     width: 200px;
     margin-bottom: 10px;
     text-align: start;
+    height: 100px;
+    padding: 20px;
+    list-style: none;
+
+}
+
+.statefalse{
+    background-color: rgb(183, 118, 118);
+}
+
+.statetrue{
+    background-color: aquamarine;
+}
+
+.taskContainer li{
+    margin-bottom: 40px;
 }

@@ -13,15 +13,18 @@ export default function Tareas() {
     const [tasks, setTasks] = useState([])
 
     useEffect(() => {
-        axios.get('falsas.json')
-            .then(data => setAllTasks(data.data))
+        axios.get('https://api-nodejs-todolist.herokuapp.com/task', {
+            headers: {'Content-Type': 'application/json',
+            authorization : `Bearer ${localStorage.getItem('token')}`}
+        })
+            .then(res => setAllTasks(res.data.data))
     }, [])
 
     useEffect(() => {
         if (cookies.get('btnFilter') == 1) {
-            setTasks(allTasks.filter(x => x.state))
+            setTasks(allTasks.filter(x => x.completed))
         } else if(cookies.get('btnFilter') == 0) {
-            setTasks(allTasks.filter(x => !x.state))
+            setTasks(allTasks.filter(x => !x.completed))
         } else{
             setTasks(allTasks)
         }
@@ -30,10 +33,10 @@ export default function Tareas() {
     function handlerTask({target}){
         if (target.innerText === 'Completadas'){
             cookies.set('btnFilter', 1, {path: '/tasks'})
-            setTasks(allTasks?.filter(x => x.state))
+            setTasks(allTasks?.filter(x => x.completed))
         } else if (target.innerText === 'No completadas'){
             cookies.set('btnFilter', 0, {path: '/tasks'})
-            setTasks(allTasks?.filter(x => !x.state))
+            setTasks(allTasks?.filter(x => !x.completed))
         } else {
             cookies.set('btnFilter', 'all', {path: '/tasks'})
             setTasks(allTasks)
@@ -50,8 +53,8 @@ export default function Tareas() {
         </div>
         <div className='taskContainer'>
             {
-                tasks?.map(x => 
-                    <Task {...x}  />
+                tasks?.map(t => 
+                    <Task key={t._id} {...t}  />
                 )
             }
         </div>
