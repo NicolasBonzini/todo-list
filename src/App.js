@@ -1,11 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 //Components
 import Login from './components/Login';
 import Home from './components/Home';
+import User from './components/User';
 //React Router
 import { Route, Routes } from 'react-router-dom';
-import Tareas from './components/Tareas';
+import TasksList from './components/TasksList';
 
 function App() {
   return (
@@ -14,7 +14,8 @@ function App() {
         <Route path="/" element={<Login />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/home" element={<Home />}/>
-        <Route path="/tasks" element={<Tareas />}/>
+        <Route path="/tasks" element={<><Tareas /><TasksList /></>}/>
+        <Route path="/user" element={<User />}/>
       </Routes>
     </div>
   );
