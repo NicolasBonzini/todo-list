@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 //Components
 import Login from './components/Login';
 import Home from './components/Home';
+import User from './components/User';
 //React Router
 import { Route, Routes } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ function App() {
         <Route path="/" element={<Login />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/home" element={<Home />}/>
+        <Route path="/user" element={<User />}/>
       </Routes>
     </div>
   );

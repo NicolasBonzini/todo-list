@@ -2,20 +2,15 @@ import React, { useState, useContext } from "react";
 import postLoginUser from "../services/postLoginUser";
 //React Router
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 export const LoginForm = () => {
-  //Redireccion
+
   const navigate = useNavigate();
-
-  //Estado del formulario
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+  const [form, setForm] = useState({ email: "", password: "",});
   const [isLoading, setIsLoading] = useState(false);
+  const [ errors, setErrors ] = useState(false);
 
-  //Captura los datos del formulairo
+
   const handleChange = (event) => {
     setForm({
       ...form,
@@ -23,23 +18,19 @@ export const LoginForm = () => {
     });
   };
 
-  //Envia los datos del formulario
-  const handleSubmit =  async (event) => {
-    setIsLoading(true);
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
+    setErrors(false)
+    const response = await postLoginUser(form);
 
-    const congrats = await postLoginUser(form);
-
-    if(congrats) {
-      setForm({
-        email: "",
-        password: "",
-      });
-
+    if (response) {
+      setForm({ email: "", password: "" });
       setIsLoading(false);
-      navigate('/home')
+      navigate("/home");
     } else {
-      alert("No");
+      setIsLoading(false);
+      setErrors(true);
     }
   };
 
@@ -75,7 +66,8 @@ export const LoginForm = () => {
             <button type="submit">LOGUEARSE</button>
           </form>
         </div>
-      )}
+        )}
+        {errors ? (<p>Las credenciales ingresadas son incorrectas</p>) : ("")}
     </>
   );
 };
